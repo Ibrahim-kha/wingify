@@ -1,0 +1,213 @@
+<html>
+    
+        <style>
+            /*.submit:hover{
+                 background-color: brown;                                                  
+            }
+            .fb{
+                border: solid 2px rgb(124, 78, 78);
+                width: 400px;
+                margin: auto ;
+                padding: 8px;
+                text-align: center;
+                border-radius: 10px;
+            }
+            .day{
+                width:100px;
+                
+            }
+            .gen{
+                width:100px;
+                height:27px;
+                border:solid 1px black ;  
+                display: flex;
+                margin-right: 30px;
+                border-radius: 3px;
+            }
+            .a{
+                margin-top: 5px;
+                margin-left:5px;
+            }
+            .d{
+                margin-top: 8px;
+                margin-right: 10px;
+            }
+            .new{
+                width:350px; 
+
+            }*/
+        </style>
+        <!--<div class="fb">
+            <h1>Create New Account</h1>
+            <h3>It's quick and easy</h3>
+            <hr>
+        <form action="/">
+            <input type="text" placeholder="FirstName"></input>
+            <input type="text" placeholder="SurName"></input>
+            <br>
+            <br>
+            <input placeholder="Mobile or email address" class="new"></input>
+            <br>
+            <br>
+            <input placeholder="new password" width="350px" class="new"></input>
+            <br>
+            <br>
+            <lable>Date Of Birth</lable>
+            <br>
+            <select class="day">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+            </select>
+            <select class="day">
+                <option>jan</option>
+                <option>feb</option>
+                <option>mar</option>
+                <option>apr</option>
+                <option>may</option>
+                <option>jun</option>
+                <option>jul</option>
+                <option>aug</option>
+                <option>sep</option>
+                <option>oct</option>
+                <option>nov</option>
+                <option>dec</option>
+            </select>
+            <select class="day">
+                <option>2000</option>
+                <option>2001</option>
+                <option>2002</option>
+                <option>2003</option>
+                <option>2004</option>
+                <option>2005</option>
+                <option>2006</option>
+                <option>2007</option>
+                <option>2008</option>
+                <option>2009</option>
+                <option>2010</option>                
+            </select>
+            <br>
+            <lable>Gender :</lable>
+            <br>
+            <div style="display: flex;">
+            <div class="gen"><div class="a">Male</div><input class="d" type="radio" name="gen"/></div>
+            <br>
+            <br>
+            <div class="gen"><div class="a">Female</div><input class="d" type="radio" name="gen"/></div>
+            <br>
+            <br>
+            </div>
+            <input class="submit" type="submit" value="Submit">
+        </form>
+    </div>-->
+    <head ><h1 style="text-align: center;">To Do App <br> Count <span id="span"></span></div></h1>
+    <body>
+        <br>
+        <div style="text-align: center;">
+    <input id="in" ></input><span > </span><button onclick="add()" id="ad1"  >Add</button></div>
+    <ul id="ul" ></ul>
+    </body>
+    <script>
+        var count=0;
+        var arr=[];
+        var dis= document.getElementById("span");
+        dis.innerHTML=count;
+     function add(){
+        var i=document.getElementById("in");
+        if(i.value!=""&&!arr.includes(i.value)){
+            arr.push(i.value);
+       count=count+1;
+       let ul=document.getElementById("ul");
+       var div=document.createElement("div");
+       div.setAttribute("id","div");
+       var lii=document.createElement("div");
+       lii.setAttribute("id",i.value);
+       lii.appendChild(document.createTextNode(i.value));
+       var but1=document.createElement("button");
+       but1.style.position="absolute";
+       but1.style.marginLeft="180px";
+       but1.style.marginTop="-20px";
+       var but2=document.createElement("button");
+       var check=document.createElement("input");
+       check.setAttribute("type","checkbox");
+       lii.style.marginTop="-20px";
+       lii.style.marginLeft="20px";
+       but2.style.position="absolute";
+       but2.style.marginLeft="220px";
+       but2.style.marginTop="-20px";
+       but2.setAttribute("class",i.value);
+       but1.setAttribute("class",i.value);
+       div.appendChild(check);
+       div.appendChild(lii);
+       div.appendChild(but1);
+       div.appendChild(but2);
+       ul.appendChild(div);
+       div.style.padding="10px";
+       div.style.border="2px black solid";
+       div.style.borderRadius="5px";
+       div.style.width="250px";
+       div.style.marginBottom="10px";
+       ul.style.marginLeft="600px";
+       ul.style.marginRight="500px";
+       but1.innerHTML="Del";
+       but2.innerHTML="Edit";
+       but1.addEventListener("click",(e)=>{
+          div.style.display="none";
+          count=count-1;
+          var dis= document.getElementById("span");
+          dis.innerHTML=count;
+          const index=arr.indexOf(e.target.className);
+          arr.splice(index,1);
+       });
+       var dis= document.getElementById("span");
+       dis.innerHTML=count;
+       check.addEventListener("change",()=>{
+           if(check.checked==true){
+               but2.style.display="none";
+           }
+       })
+       but2.addEventListener("click",(e)=>{
+       let id=e.target.className;
+       console.log(id);   
+       const index=arr.indexOf(e.target.className);
+          arr.splice(index,1);
+         but1.style.display="none";
+         but2.style.display="none";
+        let child=document.getElementById(id);
+        child.removeChild(child.childNodes[0]);
+        let inp=document.createElement("input");
+        let but=document.createElement("button");
+        but.innerHTML="Edited";
+        child.appendChild(inp);
+        child.appendChild(but);
+        but.addEventListener("click",()=>{
+            if(inp.value!=""){
+            child.removeChild(child.childNodes[0]);
+            child.removeChild(child.childNodes[0]);
+            child.append(document.createTextNode(inp.value));
+            but1.style.display="inline";
+            but2.style.display="inline";
+            but2.className=inp.value;
+            but1.className=inp.value;
+            child.id=inp.value;
+            if(inp.value!=""&&!arr.includes(inp.value)){
+            arr.push(inp.value);
+            }
+        }
+        })
+       });
+    }
+    }
+    </script>
+</html>
